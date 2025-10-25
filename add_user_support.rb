@@ -28,8 +28,8 @@ inject_into_file 'app/controllers/registrations_controller.rb', after: 'class Re
         start_new_session_for @user
         redirect_to after_authentication_url, notice: "Welcome!"
       else
-        flash[:alert] = "Try another email address or password."
-        render :new, status: :unprocessable_entity
+        flash.now[:alert] = "Try another email address or password."
+        render :new, status: :unprocessable_content
       end
     end
 
@@ -81,7 +81,7 @@ inject_into_file 'app/controllers/users_controller.rb', after: 'class UsersContr
         redirect_to after_authentication_url, notice: "Your account was changed.", status: :see_other
       else
         flash.now[:alert] = "The passwords did not match."
-        render :edit, status: :unprocessable_entity
+        render :edit, status: :unprocessable_content
       end
     end
 
